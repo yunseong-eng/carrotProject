@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring https://mybatis.org/schema/mybatis-spring-1.2.xsd
+        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 트랜잭션 관리 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <!-- 스프링 빈 및 패키지 스캔 -->
+    <context:component-scan base-package="com.controller.CarrotProject" />
+    <context:component-scan base-package="dao" />
+    <context:component-scan base-package="dto" />
+    <context:component-scan base-package="service.impl" />
+    <context:component-scan base-package="spring.config" />
+
+    <!-- MyBatis Mapper 스캔 -->
+    <mybatis-spring:scan base-package="dao" />
+
+</beans>
