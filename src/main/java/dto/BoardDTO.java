@@ -18,4 +18,5 @@ public class BoardDTO {
     private int views;              // 조회수
     private String shippingFee;     // 배송비 (무료, 유료)
     private String includes;        // 구성품 여부 (O, X)
+    private String imagePath;       // 이미지 경로 추가
 }

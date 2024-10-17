@@ -32,9 +32,4 @@ public class CommentServiceImpl implements CommentService {
     public void deleteComment(int commentId) {
         commentDAO.deleteComment(commentId);
     }
-
-    @Override
-    public void writeReply(CommentDTO commentDTO) {
-        commentDAO.insertReply(commentDTO);
-    }
 }

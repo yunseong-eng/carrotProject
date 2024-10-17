@@ -7,23 +7,23 @@
 
     <!-- 댓글 작성 -->
     <insert id="insertComment" parameterType="dto.CommentDTO">
-        INSERT INTO post_comment (board_id, user_id, parent_comment, content, create_time)
+        INSERT INTO post_comment (boardId, userId, parentComment, content, createTime)
         VALUES (#{boardId}, #{userId}, #{parentComment}, #{content}, NOW())
     </insert>
 
     <!-- 댓글 목록 조회 -->
     <select id="getCommentList" parameterType="int" resultType="dto.CommentDTO">
-        SELECT * FROM post_comment WHERE board_id = #{boardId} ORDER BY create_time ASC
+        SELECT * FROM post_comment WHERE boardId = #{boardId} ORDER BY createTime ASC
     </select>
 
     <!-- 댓글 수정 -->
     <update id="updateComment" parameterType="dto.CommentDTO">
-        UPDATE post_comment SET content = #{content} WHERE comment_id = #{commentId}
+        UPDATE post_comment SET content = #{content} WHERE commentId = #{commentId}
     </update>
 
     <!-- 댓글 삭제 -->
     <delete id="deleteComment" parameterType="int">
-        DELETE FROM post_comment WHERE comment_id = #{commentId}
+        DELETE FROM post_comment WHERE commentId = #{commentId}
     </delete>
 
 </mapper>

@@ -19,25 +19,27 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public void writeBoard(BoardDTO boardDTO) {
-        boardDAO.insertBoard(boardDTO);
+        boardDAO.insertBoard(boardDTO);  // 게시글만 저장
     }
 
     @Override
     public Map<String, Object> getBoardList(String category, int page) {
         int startNum = (page - 1) * PAGE_SIZE;
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("category", category);
         map.put("startNum", startNum);
         map.put("pageSize", PAGE_SIZE);
 
         List<BoardDTO> boardList = boardDAO.getBoardListByCategory(map);
-        List<BoardDTO> fixedNotices = boardDAO.getFixedNotices(category);
 
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<>();
         result.put("boardList", boardList);
-        result.put("fixedNotices", fixedNotices);
 
         return result;
+    }
+    @Override
+    public List<BoardDTO> getAllBoardList() {
+        return boardDAO.getAllBoardList();
     }
 
     @Override
@@ -54,10 +56,5 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void deleteBoard(int boardId) {
         boardDAO.deleteBoard(boardId);
-    }
-
-    @Override
-    public List<BoardDTO> getFixedNotices(String category) {
-        return boardDAO.getFixedNotices(category);
     }
 }

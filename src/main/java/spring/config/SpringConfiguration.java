@@ -11,13 +11,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @MapperScan(basePackages = "dao")  // MyBatis의 Mapper 인터페이스를 스캔
-@PropertySource("classpath:spring/db.properties")  // db.properties 파일을 로드
+@PropertySource("classpath:spring/db.properties") // db.properties 파일 로드
+@EnableTransactionManagement  // 트랜잭션 관리 활성화
 public class SpringConfiguration {
 
-    // DB 연결에 필요한 값들을 db.properties 파일로부터 주입
     @Value("${jdbc.driver}")
     private String driverClassName;
 
@@ -62,5 +65,11 @@ public class SpringConfiguration {
     @Bean
     public SqlSessionTemplate sqlSession() throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory());
+    }
+
+    // 트랜잭션 매니저 설정 (데이터소스 기반)
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        return new DataSourceTransactionManager(dataSource());
     }
 }
