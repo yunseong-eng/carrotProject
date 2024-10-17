@@ -19,8 +19,14 @@ public class CommentController {
     @PostMapping("/write")
     public String writeComment(@ModelAttribute CommentDTO commentDTO) {
         // 로그인 없이 임시 userId 설정
-        commentDTO.setUserId("guestUser");  // 'guestUser'를 임시 유저로 설정
-        commentService.writeComment(commentDTO);
+        commentDTO.setUserId("guestUser");
+
+        if (commentDTO.getParentComment() != null) {
+        	
+            commentService.writeReply(commentDTO);  // 대댓글 작성
+        } else {
+            commentService.writeComment(commentDTO);  // 일반 댓글 작성
+        }
         
         // 댓글 작성 후 다시 해당 게시글의 상세 페이지로 리다이렉트
         return "redirect:/board/detailForm/" + commentDTO.getBoardId();

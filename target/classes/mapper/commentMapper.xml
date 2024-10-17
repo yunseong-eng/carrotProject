@@ -10,11 +10,22 @@
         INSERT INTO post_comment (boardId, userId, parentComment, content, createTime)
         VALUES (#{boardId}, #{userId}, #{parentComment}, #{content}, NOW())
     </insert>
+    
+    <!-- 대댓글  -->
+    <insert id="insertReply" parameterType="dto.CommentDTO">
+	    INSERT INTO post_comment (boardId, userId, parentComment, content, createTime)
+	    VALUES (#{boardId}, #{userId}, #{parentComment}, #{content}, NOW())
+	</insert>
 
     <!-- 댓글 목록 조회 -->
     <select id="getCommentList" parameterType="int" resultType="dto.CommentDTO">
         SELECT * FROM post_comment WHERE boardId = #{boardId} ORDER BY createTime ASC
     </select>
+    
+    <!-- 대댓글을 가져오는 쿼리 -->
+	<select id="getRepliesForComment" parameterType="int" resultType="dto.CommentDTO">
+	    SELECT * FROM post_comment WHERE parentComment = #{commentId} ORDER BY createTime ASC
+	</select>
 
     <!-- 댓글 수정 -->
     <update id="updateComment" parameterType="dto.CommentDTO">

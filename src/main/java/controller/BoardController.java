@@ -68,6 +68,11 @@ public class BoardController {
                              HttpSession session) {
         // 로그인 없이 임시 userId 설정
         boardDTO.setUserId("temporaryUser");
+        
+        // 배송비가 없는 경우 0으로 설정
+        if (boardDTO.getShippingFee() == null || boardDTO.getShippingFee().isEmpty()) {
+            boardDTO.setShippingFee("0");
+        }
 
         // 이미지 파일 처리
         if (!file.isEmpty()) {

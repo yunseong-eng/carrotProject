@@ -10,7 +10,7 @@ public interface UserService {
     UserDTO loginUser(String userId, String password);
 
     // 아이디 중복 체크
-    boolean isUserIdAvailable(String userId);
+    String isUserIdAvailable(String userId);
 
     // 이메일 인증 처리
     void verifyEmail(String userId, String emailToken);

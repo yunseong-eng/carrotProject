@@ -6,9 +6,12 @@
 <mapper namespace="dao.UserDAO">
 
     <!-- 회원가입 -->
-    <insert id="registerUser" parameterType="dto.UserDTO">
+<!--     <insert id="registerUser" parameterType="dto.UserDTO">
         INSERT INTO user (userId, password, name, phoneNumber, gender, address, email, emailVerified, emailToken, role)
         VALUES (#{userId}, #{password}, #{name}, #{phoneNumber}, #{gender}, #{address}, #{email}, #{emailVerified}, #{emailToken}, #{role})
+    </insert> -->
+    <insert id="registerUser" parameterType="dto.UserDTO">
+    	INSERT INTO user(userId, password, name) VALUES (#{userId}, #{password}, #{name})
     </insert>
 
     <!-- 로그인 -->
@@ -17,7 +20,7 @@
     </select>
 
     <!-- 아이디 중복 체크 -->
-    <select id="checkUserId" parameterType="String" resultType="int">
+    <select id="checkUserId" parameterType="String" resultType="dto.UserDTO">
         SELECT COUNT(*) FROM user WHERE userId = #{userId}
     </select>
 
@@ -41,5 +44,5 @@
     <delete id="deleteUser" parameterType="String">
         DELETE FROM user WHERE userId = #{userId}
     </delete>
-
-</mapper>
+    
+ </mapper>   
