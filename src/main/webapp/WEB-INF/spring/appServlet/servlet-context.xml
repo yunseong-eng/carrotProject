@@ -26,12 +26,15 @@
 
     <!-- 컨트롤러 패키지 스캔 -->
     <context:component-scan base-package="com.controller.CarrotProject" />
+    <context:component-scan base-package="controller" />
 
     <!-- 정적 자원 설정 -->
     <resources location="/WEB-INF/css/" mapping="/css/**" />
     <resources location="/WEB-INF/js/" mapping="/js/**" />
     <resources location="/WEB-INF/image/" mapping="/image/**" />
+    <resources location="/WEB-INF/topbrandimage/" mapping="/topbrandimage/**" />
     <resources location="/WEB-INF/storage/" mapping="/storage/**" />
     <resources location="/WEB-INF/static/" mapping="/static/**" />
+    
 
 </beans:beans>

@@ -13,7 +13,6 @@
     <tx:annotation-driven transaction-manager="transactionManager" />
 
     <!-- 스프링 빈 및 패키지 스캔 -->
-    <context:component-scan base-package="com.controller.CarrotProject" />
     <context:component-scan base-package="dao" />
     <context:component-scan base-package="dto" />
     <context:component-scan base-package="service.impl" />
