@@ -1,4 +1,6 @@
+/*
 package controller;
+
 
 import dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,7 @@ import service.UserService;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping(value = "/user")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -18,7 +20,7 @@ public class UserController {
     // 회원가입 폼 이동
     @GetMapping("/register")
     public String registerForm() {
-        return "user/register";
+        return "/user/register";
     }
 
     // 회원가입 처리
@@ -32,18 +34,19 @@ public class UserController {
     // 로그인 폼 이동
     @GetMapping("/login")
     public String loginForm() {
-        return "user/login";
+        return "/user/login";
     }
 
     // 로그인 처리
     @PostMapping("/login")
+    @ResponseBody
     public String login(@RequestParam String userId, @RequestParam String password, HttpSession session) {
         UserDTO user = userService.loginUser(userId, password);
         if (user != null) {
-            session.setAttribute("user", user);
-            return "redirect:/";
+            session.setAttribute("user", user); //user값이 null이 아니면 세션 생성
+            return "success"; //로그인 성공시 success값 리턴, AJax로 login js에 전달
         } else {
-            return "user/login"; // 로그인 실패 시
+            return "fail"; // 로그인 실패 시
         }
     }
 
@@ -52,6 +55,11 @@ public class UserController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
+    }
+    
+    @GetMapping("/index")
+    public String index() {
+        return "index"; // ViewResolver에 따라 /WEB-INF/index.jsp를 반환
     }
 
     // 내 정보 보기
@@ -67,9 +75,9 @@ public class UserController {
     }
 
     // 아이디 중복 체크 AJAX
-    @PostMapping("/checkUserId")
+    @RequestMapping(value = "/checkUserId", method =RequestMethod.POST)
     @ResponseBody
-    public boolean checkUserId(@RequestParam String userId) {
+    public String checkUserId(@RequestParam String userId) {
         return userService.isUserIdAvailable(userId);
     }
 
@@ -94,3 +102,4 @@ public class UserController {
         }
     }
 }
+*/
