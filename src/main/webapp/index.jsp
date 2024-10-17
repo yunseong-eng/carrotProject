@@ -14,7 +14,7 @@
 <div id="wrap">
     <header>
         <div id="header">
-            <a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/image/kream.png" class="logo"></a>
+            <a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/image/carrotLogo.png" class="logo"></a>
             <dl class="topnav">
                 <dt class="blind">top navigation</dt>
                 <dd><a href="#">고객센터</a></dd>
