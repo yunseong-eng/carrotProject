@@ -99,6 +99,17 @@
 							</select>
 								<div id="emailDiv"></div></td>
 						</tr>
+						<!-- 이메일 인증용 -->
+						<tr>
+							<th class="label"><label for="email1">이메일 인증</label></th>
+							<td class="input"><input  type="email" id="email"
+								name="email" class="form-control" placeholder="이메일 입력" 
+								 autofocus style="width: 40% !important;">
+								<input type="button" value="인증하기" class="btn-primary"
+									id="emailAuth" style="width: 10% !important;"><input type="text" id="authCode"
+								name="authCode" class="form-control" placeholder="인증코드 입력"
+								maxlength="6" disabled="disabled" autofocus> <span id="emailAuthWarn"></span>
+						</td></tr>
 
 						<tr align="center">
 							<td colspan="2" height="20">
