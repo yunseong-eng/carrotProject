@@ -26,11 +26,12 @@
     <div class="container">
     <!-- 왼쪽 섹션: 이미지 -->
     <div class="left-section">
-        <c:if test="${board.imagePath != null}">
-            <img src="${pageContext.request.contextPath}/image?imagePath=${board.imagePath}" alt="게시글 이미지" />
-        </c:if>
-    </div>
-
+    	<c:if test="${board.imageFileName != null}">
+        	<img src="https://kr.object.ncloudstorage.com/bitcamp-9th-bucket-143/board/${board.imageFileName}" 
+        	alt="게시글 이미지" width="300" height="300">
+    	</c:if>
+	</div>
+	
     <!-- 오른쪽 섹션: 게시글 정보 -->
     <div class="right-section">
         <!-- 게시글 제목 -->
@@ -65,11 +66,11 @@
             <p><strong>판매자 아이디</strong> <span>${board.userId}</span></p>
             <p><strong>배송비</strong>
                 <c:choose>
-                    <c:when test="${fn:contains(board.shippingFee, '무료') == false}">
-                        <span>O (₩${board.shippingFee})</span>
+                    <c:when test="${board.shippingFee == '0' || board.shippingFee == 'X'}">
+                        <span>X (무료)</span>
                     </c:when>
                     <c:otherwise>
-                        <span>X (무료)</span>
+                        <span>O (₩${board.shippingFee})</span>
                     </c:otherwise>
                 </c:choose>
             </p>
@@ -89,15 +90,23 @@
 
     <!-- 댓글 목록 -->
     <div class="comment-list">
-        <c:forEach var="comment" items="${commentList}">
+    <c:forEach var="comment" items="${commentList}">
+        <!-- 댓글만 보여줌: parentComment가 null인 경우만 -->
+        <c:if test="${comment.parentComment == null}">
             <div class="comment">
                 <p><strong>${comment.userId}</strong>: ${comment.content}</p>
                 <p><small><fmt:formatDate value="${comment.createTime}" pattern="yyyy-MM-dd HH:mm"/></small></p>
 
+                <!-- 본인 댓글일 경우 수정, 삭제 버튼 표시 -->
+                <c:if test="${comment.userId == currentUserId}">
+                    <a href="${pageContext.request.contextPath}/comment/updateForm?commentId=${comment.commentId}&boardId=${board.boardId}" class="comment-edit-link" style="font-size: 12px;">수정</a>
+                    <a href="${pageContext.request.contextPath}/comment/delete?commentId=${comment.commentId}&boardId=${board.boardId}" class="comment-delete-link" style="font-size: 12px;" onclick="return confirm('댓글을 삭제하시겠습니까?');">삭제</a>
+                </c:if>
+
                 <!-- 대댓글 작성 버튼 -->
                 <a href="javascript:void(0)" class="reply-toggle" onclick="toggleReplyForm(${comment.commentId})">답글 달기</a>
 
-                <!-- 대댓글 목록 -->
+                <!-- 대댓글 목록을 표시 (대댓글이 존재할 경우만) -->
                 <c:if test="${comment.replyList != null}">
                     <div class="reply-list">
                         <c:forEach var="reply" items="${comment.replyList}">
@@ -117,9 +126,9 @@
                     <button type="submit">대댓글 작성</button>
                 </form>
             </div>
-        </c:forEach>
-    </div>
-
+        </c:if>
+    </c:forEach>
+</div>
 </div>
 </body>
 </html>

@@ -7,8 +7,8 @@
 
     <!-- 게시글 작성 -->
     <insert id="insertBoard" parameterType="dto.BoardDTO">
-        INSERT INTO post_board (userId, title, content, category, postType, createTime, shippingFee, includes, imagePath)
-        VALUES (#{userId}, #{title}, #{content}, #{category}, #{postType}, NOW(), #{shippingFee}, #{includes}, #{imagePath})
+        INSERT INTO post_board (userId, title, content, category, postType, createTime, shippingFee, includes, imageFileName)
+        VALUES (#{userId}, #{title}, #{content}, #{category}, #{postType}, NOW(), #{shippingFee}, #{includes}, #{imageFileName})
     </insert>
 
     <!-- 게시글 목록 조회 (카테고리별) -->
@@ -22,7 +22,7 @@
         ORDER BY createTime DESC
         LIMIT #{startNum}, #{pageSize}
     </select>
-    
+
     <!-- 게시글 목록 조회 (전체) -->
     <select id="getAllBoardList" resultType="dto.BoardDTO">
         SELECT * FROM post_board ORDER BY createTime DESC
@@ -41,7 +41,7 @@
     <!-- 게시글 수정 -->
     <update id="updateBoard" parameterType="dto.BoardDTO">
         UPDATE post_board SET title = #{title}, content = #{content}, category = #{category}, postType = #{postType},
-        shippingFee = #{shippingFee}, includes = #{includes}, imagePath = #{imagePath} WHERE boardId = #{boardId}
+        shippingFee = #{shippingFee}, includes = #{includes}, imageFileName = #{imageFileName} WHERE boardId = #{boardId}
     </update>
 
     <!-- 게시글 삭제 -->

@@ -9,5 +9,6 @@ CREATE TABLE post_board (
     views          INT DEFAULT 0,                   -- 조회수
     shippingFee    VARCHAR(10) NOT NULL,            -- 배송비 (무료, 유료)
     includes       CHAR(1) DEFAULT 'N',             -- 구성품 여부 (O, X)
-    imagePath      VARCHAR(255)                     -- 이미지 경로
+    imageFileName  VARCHAR(255),                    -- 네이버 클라우드에 저장된 이미지 파일 이름
+    CONSTRAINT fk_user_board FOREIGN KEY (userId) REFERENCES user(userId)
 );

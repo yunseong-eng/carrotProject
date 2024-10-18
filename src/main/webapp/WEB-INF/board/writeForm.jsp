@@ -10,12 +10,12 @@
 <body>
     <div class="container">
         <h2>게시글 작성</h2>
-        <form id="postForm" action="${pageContext.request.contextPath}/board/write" method="post" enctype="multipart/form-data" novalidate>
+        <form id="postForm" action="${pageContext.request.contextPath}/board/write" method="post" enctype="multipart/form-data">
             <table>
                 <tr>
                     <th><label for="file">이미지 파일:</label></th>
                     <td><input type="file" id="file" name="file" onchange="previewImage(event)"><br>
-                        <img id="imagePreview" alt="이미지 미리보기">
+                        <img id="imagePreview" alt="이미지 미리보기" style="display:none;">
                     </td>
                 </tr>
                 <tr>
@@ -55,7 +55,7 @@
                 </tr>
                 <tr>
                     <th><label for="shippingFee">배송비 금액:</label></th>
-                    <td><input type="text" id="shippingFee" name="shippingFee" placeholder="배송비 없음" disabled></td>
+					<td><input type="text" id="shippingFee" name="shippingFee" placeholder="배송비 없음"></td>
                 </tr>
                 <tr>
                     <th><label for="includes">구성품 포함 여부:</label></th>
@@ -67,7 +67,7 @@
                     </td>
                 </tr>
             </table>
-            <input type="submit" value="작성 완료">
+            <button type="submit" id="submitBtn">작성 완료</button>
         </form>
     </div>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/board.js"></script>

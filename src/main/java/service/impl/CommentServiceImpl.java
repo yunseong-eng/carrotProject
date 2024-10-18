@@ -25,8 +25,10 @@ public class CommentServiceImpl implements CommentService {
         
         // 각 댓글에 대한 대댓글을 조회하여 설정
         for (CommentDTO comment : commentList) {
-            List<CommentDTO> replies = commentDAO.getRepliesForComment(comment.getCommentId());
-            comment.setReplyList(replies);  // 댓글 객체에 대댓글 리스트 설정
+            if (comment.getParentComment() == null) { // 부모 댓글인 경우에만 대댓글을 가져옴
+                List<CommentDTO> replies = commentDAO.getRepliesForComment(comment.getCommentId());
+                comment.setReplyList(replies);
+            }
         }
         
         return commentList;

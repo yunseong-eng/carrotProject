@@ -14,6 +14,8 @@ public class CommentController {
 
     @Autowired
     private CommentService commentService;
+    
+    private String bucketName = "bitcamp-9th-bucket-143";
 
     // 댓글 작성 처리
     @PostMapping("/write")

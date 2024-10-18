@@ -5,42 +5,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletOutputStream;
+import service.ObjectStorageService;
+
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 @Controller
 public class ImageController {
 
     @Autowired
-    private ServletContext servletContext;
+    private ObjectStorageService objectStorageService;  // 네이버 클라우드 서비스 주입
 
     @GetMapping("/image")
-    public void showImage(HttpServletResponse response, @RequestParam String imagePath) {
-        // ServletContext를 통해 실제 경로를 가져옴
-        String realPath = servletContext.getRealPath(imagePath);
-
-        // 이미지 파일 객체 생성
-        File imageFile = new File(realPath);
-        if (imageFile.exists()) {
-            response.setContentType("image/jpeg");  // 이미지의 MIME 타입 설정
-            try (FileInputStream fis = new FileInputStream(imageFile);
-                 ServletOutputStream out = response.getOutputStream()) {
-
-                byte[] buffer = new byte[1024];
-                int length;
-                while ((length = fis.read(buffer)) != -1) {
-                    out.write(buffer, 0, length);
-                }
-                out.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public void showImage(HttpServletResponse response, @RequestParam String imageUrl) throws IOException {
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            response.sendRedirect(imageUrl); // 클라우드 URL로 리다이렉트
         } else {
-            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 파라미터 누락 시 에러 처리
         }
     }
+
 }
