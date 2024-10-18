@@ -17,7 +17,7 @@
 <div id="wrap">
     <header>
         <div id="header">
-            <a href="/carrot"><img src="${context}/image/kream.png" class="logo"></a>
+            <a href="/carrot"><img src="${context}/image/carrotLogo.png" class="logo"></a>
             <dl class="topnav">
                 <dt class="blind">top navigation</dt>
                 <!--   <dd><a href="#">고객센터</a></dd>

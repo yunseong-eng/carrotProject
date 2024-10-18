@@ -78,4 +78,6 @@ input[type="submit"]:hover {
     color: red;
     font-size: 12px;
     margin-top: 5px;
+    display: block;
+    padding-top: 5px; /* 오류 메시지와 입력 필드 사이의 여백 추가 */
 }
