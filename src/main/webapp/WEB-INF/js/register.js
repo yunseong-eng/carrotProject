@@ -52,7 +52,7 @@ $(function() {
     
     //회원가입 버튼 비활성화
     $('#registerBtn').prop('disabled', true);
-    
+    /*
     // 입력란 상태에 따라 등록 버튼 활성화
     $('#name, #userId, #password, #repassword, #tel2, #tel3, #email1, #email2').on('keyup change', function() {
         const name = $('#name').val().trim();
@@ -68,7 +68,7 @@ $(function() {
         const allFilled = name !== '' && userId !== '' && password !== '' && repassword !== '' && tel2 !== '' && tel3 !== '' && email1 !== '' && email2 !== '';
 
         $('#registerBtn').prop('disabled', !allFilled); // 조건에 따라 버튼 활성화/비활성화
-    });
+    });*/
     
     
         
@@ -116,6 +116,46 @@ $(function() {
                     console.log(e);
                 }
     		});
+    });
+    
+    	//인증하기 버튼을 눌렀을 때 동작
+	$("#emailAuth").click(function() {
+    	const email = $("#email").val(); //사용자가 입력한 이메일 값 얻어오기
+    		
+    	//Ajax로 전송
+        $.ajax({
+        	url : '/carrot/user/emailAuth',
+        	data : {
+        		email : email
+        	},
+        	type : 'POST',
+        	dataType : 'json',
+        	success : function(result) {
+        		console.log("result : " + result);
+        		$("#authCode").attr("disabled", false);
+        		code = result;
+        		alert("인증 코드가 입력하신 이메일로 전송 되었습니다.");
+       		}
+        }); //End Ajax
+    }); // emailAuth
+    
+        $("#authCode").on("focusout", function() {
+    	const inputCode = $("#authCode").val(); //인증번호 입력 칸에 작성한 내용 가져오기
+    	
+    	console.log("입력코드 : " + inputCode);
+    	console.log("인증코드 : " + code);
+    		
+    	if(Number(inputCode) === code){
+        	$("#emailAuthWarn").html('인증번호가 일치합니다.');
+        	$("#emailAuthWarn").css('color', 'green');
+    		$('#emailAuth').attr('disabled', true);
+    		$('#email').attr('readonly', true);
+    		$("#registerBtn").attr("disabled", false);
+    	}else{
+        	$("#emailAuthWarn").html('인증번호가 틀렸습니다.');
+        	$("#emailAuthWarn").css('color', 'red');
+        	$("#registerBtn").attr("disabled", true);
+    	}
     });
 });
 
