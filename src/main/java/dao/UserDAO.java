@@ -12,7 +12,10 @@ public interface UserDAO {
     UserDTO loginUser(String userId);
 
     // 아이디 중복 체크
-    int checkUserId(String userId);
+    UserDTO checkUserId(String userId);
+    
+    //비밀번호 체크
+    UserDTO checkUserPwd(String userId);
 
     // 이메일 인증 업데이트
     void updateEmailVerified(UserDTO userDTO);

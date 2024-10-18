@@ -1,25 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-    xmlns:tx="http://www.springframework.org/schema/tx"
-    xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring https://mybatis.org/schema/mybatis-spring-1.2.xsd
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring https://mybatis.org/schema/mybatis-spring-1.2.xsd
         http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!-- 트랜잭션 관리 -->
-    <tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- 트랜잭션 관리 -->
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
 
-    <!-- 스프링 빈 및 패키지 스캔 -->
-    <context:component-scan base-package="com.controller.CarrotProject" />
-    <context:component-scan base-package="dao" />
-    <context:component-scan base-package="dto" />
-    <context:component-scan base-package="service.impl" />
-    <context:component-scan base-package="spring.config" />
+	<!-- 스프링 빈 및 패키지 스캔 -->
+	<context:component-scan base-package="dao" />
+	<context:component-scan base-package="dto" />
+	<context:component-scan
+		base-package="service.impl" />
+	<context:component-scan
+		base-package="spring.config" />
 
-    <!-- MyBatis Mapper 스캔 -->
-    <mybatis-spring:scan base-package="dao" />
+	<!-- MyBatis Mapper 스캔 -->
+	<mybatis-spring:scan base-package="dao" />
+
+	<!-- 이메일 인증 관련 등록 -->
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.naver.com" />
+		<property name="port" value="465" />
+		<property name="username" value="ekqlsol13@naver.com" /> <!-- 인증메일 보낼 ID와 비밀번호 -->
+		<property name="password" value="Rlaekqls1" />
+		<!-- 보안연결 SSL과 관련된 설정 -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.ssl.enable">true</prop> <!-- SSL 사용 -->
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+			</props>
+		</property>
+		
+<!-- 		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtps.checkserveridentity">true</prop>
+				<prop key="mail.smtps.ssl.trust">*</prop>
+				<prop key="mail.debug">true</prop>
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+			</props>
+		</property> -->
+	</bean>
 
 </beans>
