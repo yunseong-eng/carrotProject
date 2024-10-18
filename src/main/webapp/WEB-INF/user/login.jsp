@@ -13,6 +13,7 @@
 			height="50" alt="carrot이동">
 		</a>
 		<div id="container">
+			<div id="login">로그인</div>
 			<div id="login">로그인하쎔</div>
 			<form name="loginForm" id="loginForm">
 				<table>
@@ -40,9 +41,8 @@
 			</form>
 		</div>
 	</div>
-	
-		<script type="text/javascript"
-		src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script type="text/javascript" src="/carrot/js/login.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="/carrot/js/login.js"></script>
 </body>
 </html>
+

@@ -44,13 +44,9 @@
             </dl>
             <h2 class="blind">main navigation</h2>
             <ul class="mainnav">
-                <li><a href="#">추천</a></li>
-                <li><a href="index2.html">랭킹</a></li>
-                <li><a href="#">럭셔리</a></li>
-                <li><a href="#">남성</a></li>
-                <li><a href="#">여성</a></li>
-                <li><a href="#">발견</a></li>
-                <li><a href="#">이벤트</a></li>
+                <li><a href="${pageContext.request.contextPath}/board/listForm?category=전체">전체</a></li>
+                <li><a href="${pageContext.request.contextPath}/board/listForm?category=의류">의류</a></li>
+                <li><a href="${pageContext.request.contextPath}/board/listForm?category=신발">신발</a></li>
             </ul>
         </div><!--header-->
     </header>

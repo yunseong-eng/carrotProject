@@ -21,4 +21,7 @@ public interface CommentDAO {
 
     // 대댓글 작성
     void insertReply(CommentDTO commentDTO);
+    
+    // 대댓글 조회
+    List<CommentDTO> getRepliesForComment(int commentId);
 }

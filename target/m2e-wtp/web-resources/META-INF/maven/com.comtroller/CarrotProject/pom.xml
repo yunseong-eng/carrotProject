@@ -111,10 +111,10 @@
 
 		<!-- Spring 이메일 인증하기위한 API Spring는 3개, Springboot는 1개만 들어감 -->
 		<dependency>
-    <groupId>com.sun.mail</groupId>
-    <artifactId>jakarta.mail</artifactId>
-    <version>1.6.7</version> <!-- 또는 최신 버전 -->
-</dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>jakarta.mail</artifactId>
+			<version>1.6.7</version> <!-- 또는 최신 버전 -->
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -126,6 +126,13 @@
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz-jobs</artifactId>
 			<version>2.3.2</version>
+		</dependency>
+
+		<!-- 네이버클라우드 AWS -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.12.610</version>
 		</dependency>
 
 		<!-- lombok -->
@@ -238,16 +245,16 @@
 				</configuration>
 			</plugin>
 			<plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-compiler-plugin</artifactId>
-			    <version>3.8.1</version> <!-- 최신 버전으로 업데이트 -->
-			    <configuration>
-			        <source>11</source> <!-- Java 1.8 이상으로 변경 -->
-			        <target>11</target>
-			        <compilerArgument>-Xlint:all</compilerArgument>
-			        <showWarnings>true</showWarnings>
-			        <showDeprecation>true</showDeprecation>
-			    </configuration>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version> <!-- 최신 버전으로 업데이트 -->
+				<configuration>
+					<source>11</source> <!-- Java 1.8 이상으로 변경 -->
+					<target>11</target>
+					<compilerArgument>-Xlint:all</compilerArgument>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

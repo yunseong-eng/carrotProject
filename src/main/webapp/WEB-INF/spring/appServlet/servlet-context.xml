@@ -11,10 +11,10 @@
     <annotation-driven />
 
     <!-- 정적 자원 핸들링 -->
-    <resources mapping="/resources/**" location="/resources/" />
+    <resources mapping="/resources/**" location="/WEB-INF/storage/" />
 
     <!-- JSP 뷰 리졸버 설정 -->
-    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <beans:bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF" />
         <beans:property name="suffix" value=".jsp" />
     </beans:bean>
