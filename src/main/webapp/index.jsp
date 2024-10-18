@@ -25,12 +25,12 @@
                   <dd><a href="#">관심</a></dd>
                   <dd><a href="#">알림</a></dd> -->
                   <c:if test="${user.userId == null}"> <!-- 세션이 없으면 로그인만 표시 -->
-                	<dd><a href="http://localhost:8080/carrot/user/login">로그인</a></dd>
+                	<dd><a href="${pageContext.request.contextPath}/user/login">로그인</a></dd>
                   </c:if>
                   <c:if test="${user.userId != null}"> <!-- 사용자가 로그인한 상태 -->
                   <dd><h6>[${user.userId }] 님</h6></dd>
-                  	<dd><a href="/carrot/user/myinfo">마이페이지</a></dd>
-                  	<dd><a href="/carrot/user/logout">로그아웃</a></dd>
+                  	<dd><a href="${pageContext.request.contextPath}/user/myinfo">마이페이지</a></dd>
+                  	<dd><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></dd>
                   </c:if>
             </dl>
 
