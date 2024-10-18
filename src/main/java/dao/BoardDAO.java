@@ -13,6 +13,9 @@ public interface BoardDAO {
 
     // 게시글 목록 조회 (카테고리별)
     List<BoardDTO> getBoardListByCategory(Map<String, Object> map);
+    
+    // 전체 게시글 목록 조회
+    List<BoardDTO> getAllBoardList();
 
     // 게시글 상세 조회
     BoardDTO getBoardDetail(int boardId);
@@ -25,7 +28,4 @@ public interface BoardDAO {
 
     // 조회수 증가
     void increaseViews(int boardId);
-
-    // 공지사항 상단 고정 조회
-    List<BoardDTO> getFixedNotices(String category);
 }

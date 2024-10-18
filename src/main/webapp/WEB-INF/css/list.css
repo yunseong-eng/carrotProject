@@ -1,0 +1,116 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    font-size: 15px;
+}
+
+/* 카테고리 선택 섹션 */
+#category-section {
+    margin: 20px 0;
+}
+
+#category-section a {
+    margin-right: 15px;
+    text-decoration: none;
+    font-size: 14px;
+    color: black;
+}
+
+#category-section a:hover {
+    color: blue;
+}
+
+/* 게시글 목록 테이블 스타일 */
+table {
+    width: 70%; /* 게시판 테이블 너비를 줄임 */
+    max-width: 800px; /* 최대 너비 고정 */
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 13px;
+    margin: 0 auto; /* 테이블을 페이지 중앙에 배치 */
+    margin-top: 30px;
+}
+
+th, td {
+    border-bottom: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+th:nth-child(1) {
+    width: 10%;
+}
+
+th:nth-child(2) {
+    width: 40%;
+}
+
+th:nth-child(3) {
+    width: 15%;
+}
+
+th:nth-child(4) {
+    width: 20%;
+}
+
+th:nth-child(5) {
+    width: 5%;
+}
+
+.sale {
+    color: red;
+}
+
+.purchase {
+    color: blue;
+}
+
+.title-link {
+    text-decoration: none;
+    color: black;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.title-link:hover {
+    text-decoration: underline;
+}
+
+/* 게시판 상단의 게시글 제목 글씨 크기 및 위치 고정 */
+h3 {
+    text-align: left;
+    font-size: 18px;
+    margin-top: 50px;
+    font-weight: bold;
+    max-width: 800px;
+    margin: 50px auto 10px auto;
+}
+
+/* 글 작성 버튼 스타일: 표 아래쪽 중앙 배치 */
+button {
+    font-size: 20px;
+    background-color: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    display: block;
+    margin: 20px auto; /* 기본 중앙 정렬 */
+    position: relative;
+    bottom: 0;
+    max-width: 800px;
+    margin-left: 300px; /* 버튼을 오른쪽으로 약간 이동 */
+}
+
+button:hover {
+    text-decoration: underline;
+}
