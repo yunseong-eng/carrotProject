@@ -6,12 +6,9 @@
 <mapper namespace="dao.UserDAO">
 
     <!-- 회원가입 -->
-<!--     <insert id="registerUser" parameterType="dto.UserDTO">
+    <insert id="registerUser" parameterType="dto.UserDTO">
         INSERT INTO user (userId, password, name, phoneNumber, gender, address, email, emailVerified, emailToken, role)
         VALUES (#{userId}, #{password}, #{name}, #{phoneNumber}, #{gender}, #{address}, #{email}, #{emailVerified}, #{emailToken}, #{role})
-    </insert> -->
-    <insert id="registerUser" parameterType="dto.UserDTO">
-    	INSERT INTO user(userId, password, name) VALUES (#{userId}, #{password}, #{name})
     </insert>
 
     <!-- 로그인 -->
@@ -21,7 +18,12 @@
 
     <!-- 아이디 중복 체크 -->
     <select id="checkUserId" parameterType="String" resultType="dto.UserDTO">
-        SELECT COUNT(*) FROM user WHERE userId = #{userId}
+        SELECT * FROM user WHERE userId = #{userId}
+    </select>
+    
+    <!-- 비밀번호 체크 -->
+    <select id="checkUserPwd" parameterType="string" resultType="dto.UserDTO">
+    	SELECT * FROM user WHERE userId = #{userId}
     </select>
 
     <!-- 이메일 인증 업데이트 -->
@@ -36,7 +38,8 @@
 
     <!-- 회원 정보 수정 -->
     <update id="updateUserInfo" parameterType="dto.UserDTO">
-        UPDATE user SET password = #{password}, name = #{name}, phoneNumber = #{phoneNumber}, gender = #{gender}, address = #{address}
+        UPDATE user SET password = #{password}, name = #{name}, phoneNumber = #{phoneNumber},
+        gender = #{gender}, address = #{address}, email = #{email}
         WHERE userId = #{userId}
     </update>
 

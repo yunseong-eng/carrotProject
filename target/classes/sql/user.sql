@@ -12,6 +12,11 @@ CREATE TABLE user (
     role             VARCHAR(20) DEFAULT 'USER' -- 권한 (USER 또는 ADMIN)
 );
 
-
 --외래키 테이블 삭제
 drop table if exists user;
+
+CREATE TABLE user (
+ userId VARCHAR(50),
+ password VARCHAR(100),
+ name VARCHAR(100)
+);

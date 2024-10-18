@@ -28,9 +28,9 @@
                 	<dd><a href="http://localhost:8080/carrot/user/login">로그인</a></dd>
                   </c:if>
                   <c:if test="${user.userId != null}"> <!-- 사용자가 로그인한 상태 -->
-                  <dd>안녕하세요 ${user.userId }님</dd>
-                  	<a href="">회원정보</a>
-                  	<a href="/carrot/user/logout">로그아웃</a>
+                  <dd><h6>[${user.userId }] 님</h6></dd>
+                  	<dd><a href="/carrot/user/myinfo">마이페이지</a></dd>
+                  	<dd><a href="/carrot/user/logout">로그아웃</a></dd>
                   </c:if>
             </dl>
 
