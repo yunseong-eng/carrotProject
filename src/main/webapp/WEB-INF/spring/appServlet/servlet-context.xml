@@ -32,7 +32,9 @@
     <resources location="/WEB-INF/css/" mapping="/css/**" />
     <resources location="/WEB-INF/js/" mapping="/js/**" />
     <resources location="/WEB-INF/image/" mapping="/image/**" />
+    <resources location="/WEB-INF/topbrandimage/" mapping="/topbrandimage/**" />
     <resources location="/WEB-INF/storage/" mapping="/storage/**" />
     <resources location="/WEB-INF/static/" mapping="/static/**" />
+    
 
 </beans:beans>

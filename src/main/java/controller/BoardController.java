@@ -2,6 +2,8 @@ package controller;
 
 import dto.BoardDTO;
 import dto.CommentDTO;
+import dto.UserDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,7 +60,13 @@ public class BoardController {
 
     // 게시글 작성 폼 이동
     @GetMapping("/writeForm")
-    public String writeForm(Model model) {
+    public String writeForm(HttpSession session, Model model) {
+        UserDTO currentUser = (UserDTO) session.getAttribute("user");
+
+        if (currentUser != null) {
+            model.addAttribute("currentUserId", currentUser.getUserId());
+        }
+
         return "/board/writeForm";
     }
 
@@ -67,8 +75,16 @@ public class BoardController {
     public String writeBoard(@ModelAttribute BoardDTO boardDTO,
                              @RequestParam("file") MultipartFile file,
                              HttpSession session) {
-        // 로그인 없이 임시 userId 설정
-        boardDTO.setUserId("temporaryUser");
+        // 로그인된 사용자 정보 가져오기
+        UserDTO loggedInUser = (UserDTO) session.getAttribute("user");
+
+        // 세션에 로그인된 사용자가 없을 경우 로그인 페이지로 리다이렉트
+        if (loggedInUser == null) {
+            return "redirect:/user/login";
+        }
+
+        // 로그인된 사용자의 userId 설정
+        boardDTO.setUserId(loggedInUser.getUserId());
 
         // 배송비가 없는 경우 0으로 설정
         if (boardDTO.getShippingFee() == null || boardDTO.getShippingFee().isEmpty()) {
@@ -80,11 +96,11 @@ public class BoardController {
             try {
                 // 네이버 클라우드로 파일 업로드
                 String storedFileName = objectStorageService.uploadFile(bucketName, "board/", file);
-                
+
                 // 저장되는 파일 이름에서 경로 제거하고 파일 이름만 저장
                 String fileNameOnly = storedFileName.substring(storedFileName.lastIndexOf("/") + 1);
                 boardDTO.setImageFileName(fileNameOnly); // 파일 이름만 저장
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
                 return "error";  // 오류 발생 시 에러 페이지로 리다이렉트
@@ -102,7 +118,7 @@ public class BoardController {
 
     // 게시글 상세 보기
     @GetMapping("/detailForm/{boardId}")
-    public String boardDetail(@PathVariable int boardId, Model model) {
+    public String boardDetail(@PathVariable int boardId, Model model, HttpSession session) {
         BoardDTO boardDTO = boardService.getBoardDetail(boardId);
         System.out.println("이미지 경로: " + boardDTO.getImageFileName());
         model.addAttribute("board", boardDTO);
@@ -110,6 +126,12 @@ public class BoardController {
         // 댓글 목록을 조회하여 model에 추가
         List<CommentDTO> commentList = commentService.getCommentList(boardId);
         model.addAttribute("commentList", commentList);  // 댓글 목록을 모델에 추가
+
+        // 현재 로그인된 사용자 ID 추가
+        UserDTO currentUser = (UserDTO) session.getAttribute("user");
+        if (currentUser != null) {
+            model.addAttribute("currentUserId", currentUser.getUserId());
+        }
 
         return "/board/detailForm";  // 상세페이지로 이동
     }

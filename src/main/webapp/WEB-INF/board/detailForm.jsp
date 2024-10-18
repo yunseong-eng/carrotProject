@@ -23,15 +23,18 @@
 </head>
 <body>
 
+    <!-- 로그인된 사용자 ID를 가져옴 -->
+    <c:set var="currentUserId" value="${currentUserId}" />
+
     <div class="container">
     <!-- 왼쪽 섹션: 이미지 -->
     <div class="left-section">
-    	<c:if test="${board.imageFileName != null}">
-        	<img src="https://kr.object.ncloudstorage.com/bitcamp-9th-bucket-143/board/${board.imageFileName}" 
-        	alt="게시글 이미지" width="300" height="300">
-    	</c:if>
-	</div>
-	
+        <c:if test="${board.imageFileName != null}">
+            <img src="https://kr.object.ncloudstorage.com/bitcamp-9th-bucket-143/board/${board.imageFileName}" 
+            alt="게시글 이미지" width="300" height="300">
+        </c:if>
+    </div>
+    
     <!-- 오른쪽 섹션: 게시글 정보 -->
     <div class="right-section">
         <!-- 게시글 제목 -->

@@ -1,0 +1,126 @@
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	margin: 0;
+	padding: 0;
+}
+
+#myinfo-jsp {
+	width: 80%;
+	margin: 50px auto;
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	font-size: 15px;
+	margin-bottom: 20px;
+	color: #333;
+}
+
+#right {
+	text-align: left;
+}
+
+#container {
+	padding: 20px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th.label {
+	text-align: left;
+	padding: 10px;
+	color: #555;
+}
+
+td.input {
+	padding: 10px;
+}
+
+input[type="text"], input[type="password"], input[type="button"], input[type="email"]
+	{
+	width: 30%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+	border-color: #007BFF;
+	outline: none;
+}
+
+select {
+	width: 30%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+button {
+	background-color: #28a745;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	padding: 10px 15px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+#deleteBtn {
+	font-size: 10px !important;
+	padding: 0px;
+	width: 40px !important;
+	height: 20px !important;
+	background: gray !important;
+	color: lightgray !important;
+	float: right;
+	white-space: nowrap;
+}
+
+button:hover {
+	background-color: #218838;
+}
+
+button:disabled {
+	background-color: #ccc;
+	cursor: not-allowed;
+}
+
+#nameDiv, #userIdDiv, #passwordDiv, #repasswordDiv, #telDiv, #genderDiv,
+	#emailDiv {
+	color: red;
+	font-size: 12px;
+}
+
+tr {
+	border-bottom: 1px solid #ddd;
+}
+
+tr:last-child {
+	border-bottom: none;
+}
+
+label {
+	font-weight: bold;
+}
+
+.input-email {
+	width: 30%;
+}
+
+input[type="button"] {
+	background-color: #007BFF;
+	color: white;
+	border: none;
+}
+
+input[type="button"]:hover {
+	background-color: #0056b3;
+}

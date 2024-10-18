@@ -14,6 +14,7 @@
 		</a>
 		<div id="container">
 			<div id="login">로그인</div>
+			<div id="login">로그인하쎔</div>
 			<form name="loginForm" id="loginForm">
 				<table>
 					<tr>
@@ -33,15 +34,15 @@
 					<tr align="center">
 						<td colspan="2" height="20">
 							<button type="button" id="loginBtn">로그인</button>
+							<button type="button" id="registerBtn">회원가입</button>
 						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
 	</div>
-
-	<script type="text/javascript"
-		src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script type="text/javascript" src="/carrot/js/login.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="/carrot/js/login.js"></script>
 </body>
 </html>
+

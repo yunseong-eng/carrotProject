@@ -11,6 +11,8 @@
     <div class="container">
         <h2>게시글 작성</h2>
         <form id="postForm" action="${pageContext.request.contextPath}/board/write" method="post" enctype="multipart/form-data">
+            <!-- 로그인된 사용자 ID를 숨겨진 필드로 포함 -->
+            <input type="hidden" name="userId" value="${currentUserId}">
             <table>
                 <tr>
                     <th><label for="file">이미지 파일:</label></th>
@@ -55,7 +57,7 @@
                 </tr>
                 <tr>
                     <th><label for="shippingFee">배송비 금액:</label></th>
-					<td><input type="text" id="shippingFee" name="shippingFee" placeholder="배송비 없음"></td>
+                    <td><input type="text" id="shippingFee" name="shippingFee" placeholder="배송비 없음"></td>
                 </tr>
                 <tr>
                     <th><label for="includes">구성품 포함 여부:</label></th>
